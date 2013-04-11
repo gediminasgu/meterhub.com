@@ -1,0 +1,34 @@
+<a href="#/feeds">Back to list</a>
+<h3>{{feed.title}}</h3>
+<div class="well">
+  <div class="row">
+    <div class="span2">Feed ID</div>
+    <div class="span5">{{feed.fid}}</div>
+  </div>
+  <div class="row">
+    <div class="span2">Owner</div>
+    <div class="span5">{{feed.user}}</div>
+  </div>
+  <div class="row">
+    <div class="span2">Location</div>
+    <div class="span5">{{feed.location}}</div>
+  </div>
+  <div class="row" ng-show="isDescSet()">
+      <p class="muted">{{feed.desc}}</p>
+  </div>
+</div>
+
+    <table class="table">
+        <tr>
+            <th>Code</th>
+            <th>Title</th>
+            <th>Currently</th>
+        </tr>
+        <tr ng-repeat="stream in feed.streams">
+            <td>{{stream.code}}</td>
+            <td>{{stream.title}}</td>
+            <td>23 C</td>
+        </tr>
+    </table>
+
+<a href="#/feeds">Back to list</a>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include themes/mh/header.html %}
+  <body data-spy="scroll" data-target="inner-sidebar">
+{% include themes/mh/menu.html %}
+
+    <div class="inner-header">
+        <div class="container">
+        <h1>{{page.title}}</h1>
+        </div>
+    </div>
+
+<div class="container">
+  <div class="row">
+    <div class="span9">
+      <div id="page-content">
+          {{content}}
+      </div>
+    </div>
+</div>
+
+</div>
+	{% include themes/mh/footer.html %}
+  </body>
+</html>

@@ -1,0 +1,9 @@
+<span>Total feeds: {{feeds.length}}</span>
+<ul class="unstyled">
+	<li ng-repeat="feed in feeds">
+        <dl>
+            <dt><a href="#/feeds/{{feed.fid}}">{{feed.title}}</a> ({{feed.location}}) by <a href="/users#/{{feed.user}}">{{feed.user}}</a></dt>
+            <dd>{{feed.desc}}</dd>
+        </dl>
+	</li>
+</ul>

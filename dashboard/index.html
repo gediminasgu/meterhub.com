@@ -1,0 +1,297 @@
+---
+layout: dashboard
+title : User dashboard
+scripts:
+- http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js
+- http://d3js.org/d3.v3.min.js
+- /assets/js/jQDateRangeSlider-min.js
+- https://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js
+- /assets/js/angular-resource.min.js
+- /assets/js/chart.js?d
+- controllers.js
+
+---
+{% include JB/setup %}
+
+<div ng-app="dashboards" ng-view>
+</div>
+
+<style>
+/*body {
+  font: 10px sans-serif;
+}*/
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.axis {
+			  shape-rendering: crispEdges;
+			}
+
+			.x.axis line {
+			  stroke: lightgrey;
+			}
+
+			.x.axis .minor {
+			  stroke-opacity: .5;
+			}
+
+			.x.axis path {
+			}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.hover-line {
+	stroke: #6E7B8B;
+}
+
+.chart-container {
+    margin: 20px 0px 60px 0px;
+}
+
+.chart-container .slider {
+    margin-left: 40px;
+    margin-right: 40px;
+    width: 100%;
+}
+
+.chart {
+    height: 500px;
+}
+</style>
+
+<script>
+    var charts = {
+        '16' : {
+            container: 'charts',
+            title: 'Heating vs. Gas and room temperatures (hourly)',
+            managementApiUrl: 'http://www.meterhub.com/managementapi',
+            dataWarehouseApiUrl: 'http://dw.meterhub.com',
+            query: {
+                fid: 1,
+                dimension: 'hour',
+                duration: '48hours',
+            },
+            yaxis: [
+                {
+                    title: 'Heating',
+                    align: 'left',
+                    max: 1.1,
+                    visible: false,
+                },
+                {
+                    min: 0,
+                    max: 120,
+                    title: 'Gas',
+                    align: 'left',
+                    // format: 'f', // value formatting https://github.com/mbostock/d3/wiki/Formatting#wiki-d3_format
+                    // color, style
+                },
+                {
+                    title: 'Temperature (ºC)',
+                    align: 'right',
+                    min: 16,
+                    max: 22,
+                }
+            ],
+            series: [
+                {
+                    code: 'H0',
+                    type: 'area',
+                    yaxis: 0,
+                    color: '#ff7f0e',
+                    style: {
+                        fill: '#ffbb78',
+                        'fill-opacity': 0.5,
+                        opacity: 0.6,
+                    }
+                },
+                {
+                    code: 'H1',
+                    type: 'area',
+                    yaxis: 0,
+                    color: '#2ca02c',
+                    style: {
+                        fill: '#98df8a',
+                        'fill-opacity': 0.5,
+                        opacity: 0.6,
+                    }
+                },
+                {
+                    code: 'H3',
+                    type: 'area',
+                    yaxis: 0,
+                    color: '#d62728',
+                    style: {
+                        fill: '#ff9896',
+                        'fill-opacity': 0.5,
+                        opacity: 0.6,
+                    }
+                },
+                {
+                    code: 'H4',
+                    type: 'area',
+                    yaxis: 0,
+                    color: '#9467bd',
+                    style: {
+                        fill: '#c5b0d5',
+                        'fill-opacity': 0.5,
+                        opacity: 0.6,
+                    }
+                },
+                {
+                    code: 'H6',
+                    type: 'area',
+                    yaxis: 0,
+                    color: '#8c564b',
+                    style: {
+                        fill: '#c49c94',
+                        'fill-opacity': 0.5,
+                        opacity: 0.6,
+                    }
+                },
+                {
+                    code: 'H5',
+                    type: 'area',
+                    yaxis: 0,
+                    color: '#e377c2',
+                    style: {
+                        fill: '#f7b6d2',
+                        'fill-opacity': 0.5,
+                        opacity: 0.6,
+                    }
+                },
+                {
+                    code: 'GAS_SENSOR01',
+                    type: 'bar',
+                    yaxis: 1,
+                    color: '#1f77b4',
+                    style: {
+                        'fill-opacity': 0.7
+                    },
+                },
+                {
+                    code: '2872F96B020000F6',
+                    type: 'line',
+                    yaxis: 2,
+                    color: '#d62728',
+                },
+                {
+                    code: '286B726902000087',
+                    type: 'line',
+                    yaxis: 2,
+                    color: '#2ca02c',
+                },
+                {
+                    code: '28DBCC6B0200006A',
+                    type: 'line',
+                    yaxis: 2,
+                    color: '#9467bd',
+                },
+                {
+                    code: '2807F36B02000038',
+                    type: 'line',
+                    yaxis: 2,
+                    color: '#ff7f0e',
+                },
+                {
+                    code: '285F5E690200006F',
+                    type: 'line',
+                    yaxis: 2,
+                    color: '#8c564b',
+                },
+                {
+                    code: '28FBC56B0200002F',
+                    type: 'line',
+                    yaxis: 2,
+                    color: '#e377c2',
+                },
+            ]
+        },
+        '15': {
+            container: 'charts',
+            title: 'Gas vs. Outside temperature (hourly)',
+            managementApiUrl: 'http://www.meterhub.com/managementapi',
+            dataWarehouseApiUrl: 'http://dw.meterhub.com',
+            query: {
+                fid: 1,
+                dimension: 'hour',
+                duration: '48hours',
+            },
+            yaxis: [
+                {
+                    min: 0,
+                    max: 120,
+                    title: 'Gas',
+                    align: 'left',
+                    // format: 'f', // value formatting https://github.com/mbostock/d3/wiki/Formatting#wiki-d3_format
+                },
+                {
+                    title: 'Temperature (ºC)',
+                    align: 'right',
+                }
+            ],
+            series: [
+                {
+                    code: 'GAS_SENSOR01',
+                    type: 'bar',
+                    yaxis: 0
+                },
+                {
+                    code: '2831ED6B020000B9',
+                    type: 'line',
+                    yaxis: 1
+                }
+            ]
+        },
+        '17': {
+            container: 'charts',
+            title: 'Gas vs. Outside temperature (daily)',
+            managementApiUrl: 'http://www.meterhub.com/managementapi',
+            dataWarehouseApiUrl: 'http://dw.meterhub.com',
+            query: {
+                fid: 1,
+                dimension: 'day',
+                duration: '21days',
+            },
+            yaxis: [
+                {
+                    min: 0,
+                    title: 'Gas',
+                    align: 'left',
+                },
+                {
+                    title: 'Temperature (ºC)',
+                    align: 'right',
+                }
+            ],
+            series: [
+                {
+                    code: 'GAS_SENSOR01',
+                    type: 'bar',
+                    yaxis: 0
+                },
+                {
+                    code: '2831ED6B020000B9',
+                    type: 'line',
+                    yaxis: 1
+                }
+            ]
+        }
+    };
+        /*chart.remoteInit(
+	    {
+	        container: 'chart',
+	        managementApiUrl: 'http://www.meterhub.com/managementapi',
+	        dataWarehouseApiUrl: 'http://dw.meterhub.com',
+	        chartId: 17
+	    });*/
+</script>

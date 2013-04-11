@@ -1,0 +1,10 @@
+<a href="/users/#/{{userId}}">Back to user profile</a>
+
+<h3>{{userId}}'s dashboard</h3>
+<div id="charts"></div>
+<div ng-repeat="chart in charts">
+    <div id="container{{chart.cid}}"></div>
+    {{initChart(chart.cid)}}
+</div>
+
+<a href="/users/#/{{userId}}">Back to user profile</a>
