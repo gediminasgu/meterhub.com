@@ -1,6 +1,8 @@
 angular.module('feedServices', ['ngResource']).
     factory('Feed', function ($resource) {
-        return $resource(apiUrl + '/feed/:feedId', {}, {
+        var url = apiUrl;
+        url = url.split(':').join('\\:');
+        return $resource(url + '/feed/:feedId', {}, {
             query: { method: 'JSONP', params: { feedId: 'search', q: ' ', callback: 'JSON_CALLBACK' }, isArray: true },
             get: { method: 'JSONP', params: { feedId: '', callback: 'JSON_CALLBACK' } }
         });

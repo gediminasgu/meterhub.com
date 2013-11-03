@@ -2,16 +2,16 @@
 <h3>{{feed.title}}</h3>
 <div class="well">
   <div class="row">
-    <div class="span2">Feed ID</div>
-    <div class="span5">{{feed.fid}}</div>
+    <div class="col-xs-2 col-sm-2 col-md-2">Feed ID</div>
+    <div class="col-xs-5 col-sm-5 col-md-5">{{feed.id}}</div>
   </div>
   <div class="row">
-    <div class="span2">Owner</div>
-    <div class="span5">{{feed.user}}</div>
+    <div class="col-xs-2 col-sm-2 col-md-2">Owner</div>
+    <div class="col-xs-5 col-sm-5 col-md-5">{{feed.user}}</div>
   </div>
   <div class="row">
-    <div class="span2">Location</div>
-    <div class="span5">{{feed.location}}</div>
+    <div class="col-xs-2 col-sm-2 col-md-2">Location</div>
+    <div class="col-xs-5 col-sm-5 col-md-5">{{feed.location}}</div>
   </div>
   <div class="row" ng-show="isDescSet()">
       <p class="muted">{{feed.desc}}</p>

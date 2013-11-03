@@ -1,4 +1,4 @@
-angular.module("authentication").factory("authentication", ['$cookieStore', '$http', '$document', '$rootScope', function (cookieStore, http, doc, rootScope) {
+angular.module("app", []).factory("authentication", ['$http', '$document', '$rootScope', function (http, doc, rootScope) {
 	return {
 		/*
 		isAuthenticated: function () {
@@ -7,67 +7,45 @@ angular.module("authentication").factory("authentication", ['$cookieStore', '$ht
 		clientId: null,
 		clientName: null,
 		homeAddress: null,
-		client: null,
-		token: null,
-		type: null,
-		getClientId: function () {
-			if (this.clientId == null) {
-				var userInfo = cookieStore.get("user");
+		client: null,*/
+		ticket: null,
+		user: null,
+		remember: null,
+		getUser: function () {
+			if (!this.user) {
+				var userInfo = $.cookie('user');
 				if (userInfo) {
-					this.clientId = userInfo.id;
-					this.token = userInfo.token;
-					if (typeof (userInfo.type) == 'undefined')
-						this.type = 'personal';
-					else
-						this.type = userInfo.type;
+					var u = JSON.parse(userInfo);
+					this.user = u.user;
+					this.ticket = u.ticket;
 				}
 			}
-			return this.clientId;
-		},
-		getClientName: function () {
-			if (this.clientName == null) {
-				var userInfo = cookieStore.get("user");
-				if (userInfo) {
-					this.clientName = userInfo.name;
-				}
-			}
-			return this.clientName;
-		},
-		getHomeAddress: function () {
-			if (this.homeAddress == null) {
-				var userInfo = cookieStore.get("user");
-				if (userInfo) {
-					this.homeAddress = userInfo.address;
-				}
-			}
-			return this.homeAddress;
+			return this.user;
 		},
 		saveUserToCookie: function () {
-			//cookieStore.put("user", { id: this.clientId, token: this.token, name: this.client.name });
+			var config = {path: "/"};
+			if (this.remember)
+				config.expires = 30;
+			$.cookie('user', JSON.stringify({ticket: this.ticket, user: this.user}), config);
 		},
-		authenticate: function (email, password, onSuccess, onFail) {
+		signin: function (username, password, remember, onSuccess, onFail) {
 			var self = this;
-			http.post('/api/authorizations', { "username": email, "password": password }, { headers: { "Accept": "application/vnd.clickataxi.v2+json" } })
+			this.remember = remember;
+			http.post(apiUrl + '/authentication', { "username": username, "password": password })
 				.success(function (data, status, headers, config) {
-					self.token = data.token;
-					self.requestClientInfo(email, password, onSuccess, onFail);
+					self.ticket = data.ticket;
+					self.saveUserToCookie();
+					self.requestUserInfo(onSuccess, onFail);
 				})
 				.error(function (data, status, headers, config) {
 					if (onFail) onFail(data, status, headers);
 				});
 		},
-		requestClientInfo: function (email, password, onSuccess, onFail) {
+		requestUserInfo: function (onSuccess, onFail) {
 			var self = this;
-			http.post('/api/sessions', { "email": email, "password": password }, { headers: { "Accept": "application/vnd.clickataxi.v2+json" } })
+			http.get(apiUrl + '/user', { headers: { "X-Auth-Ticket": this.ticket } })
 				.success(function (data, status, headers, config) {
-					self.token = data.token;
-					if (typeof (data.corporation) != 'undefined') {
-						_gaq.push(['_setCustomVar', 1, 'user_type', 'corporate', 1]);
-						self.updateCorporateInfoLocal(data.corporation);
-					} else {
-						_gaq.push(['_setCustomVar', 1, 'user_type', 'personal', 1]);
-						self.updateClientInfoLocal(data.client);
-					}
+					self.user = data;
 					self.saveUserToCookie();
 					rootScope.$emit('userAuthenticated');
 					if (onSuccess) onSuccess();
@@ -76,58 +54,10 @@ angular.module("authentication").factory("authentication", ['$cookieStore', '$ht
 					if (onFail) onFail(data, status, headers);
 				});
 		},
-		updateClientInfo: function (callback) {
-			var self = this;
-			if (this.type == 'personal') {
-				http.get('/api/clients/' + this.getClientId(), { headers: { "Accept": "application/vnd.clickataxi.v2+json" } })
-					.success(function(data, status, headers, config) {
-						self.updateClientInfoLocal(data);
-						if (callback) callback(self.client);
-					})
-					.error(function(data, status, headers, config) {
-						self.client = null;
-						if (callback) callback(self.client);
-					});
-			} else {
-				http.get('/api/corporations/' + this.getClientId(), { headers: { "Accept": "application/vnd.clickataxi.v2+json" } })
-					.success(function (data, status, headers, config) {
-						self.updateCorporateInfoLocal(data);
-						if (callback) callback(self.client);
-					})
-					.error(function (data, status, headers, config) {
-						self.client = null;
-						if (callback) callback(self.client);
-					});
-			}
-		},
-		updateClientInfoLocal: function(client) {
-			this.client = client;
-			this.clientName = client.name;
-			this.clientId = client.id;
-			this.type = 'personal';
-		},
-		updateCorporateInfoLocal: function (corporation) {
-			this.client = corporation;
-			this.clientName = corporation.displayName;
-			this.clientId = corporation.id;
-			this.type = 'corporate';
-
-			if (typeof(corporation.homeAddress.placeRef) != 'undefined')
-				this.homeAddress = corporation.homeAddress.placeRef.replace('\r\n', ', ');
-			else
-				this.homeAddress = corporation.homeAddress.singleLineFormattedAddress;
-		},
-		isCorporate: function() {
-			return this.clientId != null && this.type == 'corporate';
-		},
-		signout: function () {
-			cookieStore.remove("user");
+		logout: function () {
 			doc[0].cookie = 'user=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-			this.clientId = null;
-			this.client = null;
-			this.clientName = null;
-			this.token = null;
-			this.type = null;
-		}*/
+			this.ticket = null;
+			this.user = null;
+		}
 	};
 }]);

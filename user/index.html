@@ -1,12 +1,11 @@
 ---
 layout: page
 title : Users
+scripts:
+- /assets/js/angular-resource.min.js
+- controllers.js?v=1
 ---
 {% include JB/setup %}
 
-<div ng-app="users" ng-view>
+<div ng-view>
 </div>
-
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js"></script>
-<script src="/assets/js/angular-resource.min.js"></script>
-<script src="controllers.js"></script>

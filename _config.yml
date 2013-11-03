@@ -90,8 +90,6 @@ JB :
     url: http://wiki.meterhub.com/
   - text: Blog
     url: /2013/04/17/opensource/
-  - text: Sign in
-    url: /signin
 
   # Settings for comments helper
   # Set 'provider' to the comment provider you want to use.
