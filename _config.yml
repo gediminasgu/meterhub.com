@@ -4,6 +4,7 @@ permalink: /:categories/:year/:month/:day/:title
 
 exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md"]
 #auto: true
+safe: true
 pygments: true
 
 # Themes are encouraged to use these universal variables 
@@ -75,15 +76,20 @@ JB :
   tags_path : /tags.html
   atom_path : /atom.xml
   rss_path : /rss.xml
+  
+  MH_API_URL: http://api.meterhub.com/managementapi
+  MH_DW_URL: http://dw.meterhub.com
 
   navigation:
   - text: Home
     url: /
     layout: front
   - text: Feeds
-    url: /feeds
+    url: /feed
   - text: API
     url: http://wiki.meterhub.com/
+  - text: Blog
+    url: /2013/04/17/opensource/
   - text: Sign in
     url: /signin
 
@@ -94,7 +100,7 @@ JB :
   comments :
     provider : disqus
     disqus :
-      short_name : jekyllbootstrap
+      short_name : meterhub
     livefyre :
       site_id : 123
     intensedebate :
@@ -110,9 +116,9 @@ JB :
   # Set 'provider' to false to turn analytics off globally.
   #        
   analytics :
-    provider : false
+    provider : google
     google : 
-        tracking_id : 'UA-123-12'
+        tracking_id : 'UA-8771888-2'
     getclicky :
       site_id : 
     mixpanel :

@@ -1,0 +1,15 @@
+<html>
+    <head>
+<script type="text/javascript">
+    var path = document.location.pathname;
+    if (path.indexOf('/dashboard/') == 0)
+        document.location = '/dashboard/#/' + path.substring(11);
+    else if (path.indexOf('/user/') == 0)
+        document.location = '/user/#/' + path.substring(6);
+    else if (path.indexOf('/feed/') == 0)
+        document.location = '/feed/#/' + path.substring(6);
+    else
+        document.location = '404.html';
+</script>
+</head>
+</html>

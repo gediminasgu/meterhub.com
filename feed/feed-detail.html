@@ -1,4 +1,4 @@
-<a href="#/feeds">Back to list</a>
+<a href="#/">Back to list</a>
 <h3>{{feed.title}}</h3>
 <div class="well">
   <div class="row">
@@ -27,8 +27,9 @@
         <tr ng-repeat="stream in feed.streams">
             <td>{{stream.code}}</td>
             <td>{{stream.title}}</td>
-            <td>23 C</td>
+            <td>{{stream.value}}</td>
         </tr>
     </table>
+{{ loadLastValues() }}
 
-<a href="#/feeds">Back to list</a>
+<a href="#/">Back to list</a>

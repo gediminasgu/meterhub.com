@@ -12,6 +12,7 @@ scripts:
 
 ---
 {% include JB/setup %}
+<link rel="stylesheet" href="/assets/css/jqs/iThing.css" type="text/css" />
 
 <div ng-app="dashboards" ng-view>
 </div>
@@ -66,6 +67,17 @@ scripts:
 .chart {
     height: 500px;
 }
+
+@media (max-width: 500px) {
+    .chart {
+        height: 200px;
+    }
+}
+@media (min-width: 500px) and (max-width: 979px) {
+    .chart {
+        height: 300px;
+    }
+}
 </style>
 
 <script>
@@ -73,8 +85,8 @@ scripts:
         '16' : {
             container: 'charts',
             title: 'Heating vs. Gas and room temperatures (hourly)',
-            managementApiUrl: 'http://www.meterhub.com/managementapi',
-            dataWarehouseApiUrl: 'http://dw.meterhub.com',
+            managementApiUrl: apiUrl,
+            dataWarehouseApiUrl: dwUrl,
             query: {
                 fid: 1,
                 dimension: 'hour',
@@ -219,8 +231,8 @@ scripts:
         '15': {
             container: 'charts',
             title: 'Gas vs. Outside temperature (hourly)',
-            managementApiUrl: 'http://www.meterhub.com/managementapi',
-            dataWarehouseApiUrl: 'http://dw.meterhub.com',
+            managementApiUrl: apiUrl,
+            dataWarehouseApiUrl: dwUrl,
             query: {
                 fid: 1,
                 dimension: 'hour',
@@ -255,8 +267,8 @@ scripts:
         '17': {
             container: 'charts',
             title: 'Gas vs. Outside temperature (daily)',
-            managementApiUrl: 'http://www.meterhub.com/managementapi',
-            dataWarehouseApiUrl: 'http://dw.meterhub.com',
+            managementApiUrl: apiUrl,
+            dataWarehouseApiUrl: dwUrl,
             query: {
                 fid: 1,
                 dimension: 'day',
@@ -290,8 +302,8 @@ scripts:
         /*chart.remoteInit(
 	    {
 	        container: 'chart',
-	        managementApiUrl: 'http://www.meterhub.com/managementapi',
-	        dataWarehouseApiUrl: 'http://dw.meterhub.com',
+	        managementApiUrl: apiUrl,
+	        dataWarehouseApiUrl: dwUrl,
 	        chartId: 17
 	    });*/
 </script>
