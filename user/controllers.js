@@ -1,6 +1,6 @@
 angular.module('userServices', ['ngResource']).
     factory('User', function ($resource) {
-        return $resource('http://www.meterhub.com/managementapi/feed/user/:userId', {}, {
+        return $resource(apiUrl + '/feed/user/:userId', {}, {
             query: { method: 'JSONP', params: { userId: '', callback: 'JSON_CALLBACK' }, isArray: true },
             get: { method: 'JSONP', params: { userId: '', callback: 'JSON_CALLBACK' } }
         });
@@ -16,7 +16,7 @@ angular.module('users', ['userServices']).
 
 function UserListCtrl($scope, Feed) {
     //$scope.feeds = Feed.query();
-    $scope.feeds = function () { document.location.href = '/feeds'; };
+    $scope.feeds = function () { document.location.href = '/feed'; };
 }
 
 function UserDetailCtrl($scope, $routeParams, $http) {
@@ -24,7 +24,7 @@ function UserDetailCtrl($scope, $routeParams, $http) {
     $scope.feeds = [];
 
     $scope.loadFeeds = function () {
-        $http.jsonp('http://www.meterhub.com/managementapi/feed/user/' + $routeParams.userId + '?callback=JSON_CALLBACK')
+        $http.jsonp(apiUrl + '/feed/user/' + $routeParams.userId + '?callback=JSON_CALLBACK')
             .success(function (data) { $scope.feeds = data; });
     };
 

@@ -1,6 +1,6 @@
 angular.module('dashboardServices', ['ngResource']).
     factory('Dashboard', function ($resource) {
-        return $resource('http://www.meterhub.com/managementapi/feed/user/:userId', {}, {
+        return $resource( apiUrl + '/feed/user/:userId', {}, {
             query: { method: 'JSONP', params: { userId: '', callback: 'JSON_CALLBACK' }, isArray: true },
             get: { method: 'JSONP', params: { userId: '', callback: 'JSON_CALLBACK' } }
         });
@@ -19,7 +19,7 @@ function DashboardListCtrl($scope, $routeParams, $http) {
     $scope.charts = [];
 
     $scope.loadCharts = function () {
-        $http.jsonp('http://www.meterhub.com/managementapi/chart/' + $routeParams.userId + '?callback=JSON_CALLBACK')
+        $http.jsonp(apiUrl + '/chart/' + $routeParams.userId + '?callback=JSON_CALLBACK')
             .success(function (data) { $scope.charts = data; });
     };
 
@@ -39,7 +39,7 @@ function DashboardDetailCtrl($scope, $routeParams, $http) {
     }
 
     $scope.loadFeeds = function () {
-        /*$http.jsonp('http://www.meterhub.com/managementapi/chart/' + $routeParams.userId + '?callback=JSON_CALLBACK')
+        /*$http.jsonp(apiUrl + '/chart/' + $routeParams.userId + '?callback=JSON_CALLBACK')
             .success(function (data) { $scope.feeds = data; });*/
         $scope.charts = [
     {
