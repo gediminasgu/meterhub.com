@@ -15,7 +15,8 @@
     <![endif]-->
 
     <!-- Le styles -->
-    <link href="{{ ASSET_PATH }}/css/bootstrap.css" rel="stylesheet">
+    <link href="{{ ASSET_PATH }}/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ ASSET_PATH }}/css/bootstrap-theme.css" rel="stylesheet">
     <link href="{{ ASSET_PATH }}/css/colorbox.css" rel="stylesheet">
     <link href="{{ ASSET_PATH }}/css/style.css" rel="stylesheet">
     <link href="{{ ASSET_PATH }}/css/font-awesome.css" rel="stylesheet">
@@ -32,18 +33,18 @@
 
 <div class="headingcta home">
   <div class="container">
-    <div class="row-fluid">
-      <div class="span6">
-    <h1>It's free!</h1>
-    <p class="cta-text">Simple service for your meter data storage, aggregation and visualization.</p>
-    <p>
-		<a href="/dashboard/gediminasgu" class="btn btn-large">View Demo</a>
-		<a href="#" class="btn btn-inverse btn-large">Get started</a>
-	</p>
-    </div>
-    <div class="span6">
-      <img src="{{ ASSET_PATH }}/img/chart_pic.png" class="iphone">
-    </div>
+    <div class="row">
+      <div class="col-xs-6 col-sm-6 col-md-6">
+        <h1>It's free!</h1>
+        <p class="cta-text">Simple service for your meter data storage, aggregation and visualization.</p>
+        <p>
+      		<a href="/dashboard/gediminasgu" class="btn btn-default btn-lg" role="button" >View Demo</a>
+      		<a href="#" class="btn btn-default btn-inverse btn-lg" role="button">Get started</a>
+      	</p>
+      </div>
+      <div class="col-xs-6 col-sm-6 col-md-6">
+        <img src="{{ ASSET_PATH }}/img/chart_pic.png" class="iphone">
+      </div>
     </div>
   </div>
 </div>
@@ -66,19 +67,19 @@
   <div class="homepage-content">
 
     <div class="row-fluid" style="text-align: center">
-      <div class="span4">
+      <div class="col-xs-4 col-sm-4 col-md-4">
         <h2>One place for all your<br/> meter data</h2>
 		<p>
 			You can use meterHUB for all your metering projects like energy monitoring, server/application monitoring, environment monitoring and many more.
 		</p>
       </div>
-      <div class="span4">
+      <div class="col-xs-4 col-sm-4 col-md-4">
         <h2>RAW data<br/> or aggregated?</h2>
         <p>
 			With meterHUB you can choose what data you want. Raw or aggregated. Aggregated by hour or by day. Or maybe by week? Or...?
 		</p>
       </div>
-        <div class="span4">
+        <div class="col-xs-4 col-sm-4 col-md-4">
         <h2>Analyse<br/>and share</h2>
         <p>Using meterHUB API, you can query your data, visualize, analyse! Share your charts or data with your friends. Build your own applications on top of meterHUB API!</p>
       </div>
@@ -86,9 +87,9 @@
     </div>
 	
 	<div class="row">
-		<div class="span4 center"><a href="#" class="btn btn-small">Learn more</a></div>
-		<div class="span4 center"><a href="#" class="btn btn-small">Learn more</a></div>
-		<div class="span4 center"><a href="#" class="btn btn-small">Learn more</a></div>
+		<div class="col-xs-4 col-sm-4 col-md-4 center"><a href="#" class="btn btn-default btn-small">Learn more</a></div>
+		<div class="col-xs-4 col-sm-4 col-md-4 center"><a href="#" class="btn btn-default btn-small">Learn more</a></div>
+		<div class="col-xs-4 col-sm-4 col-md-4 center"><a href="#" class="btn btn-default btn-small">Learn more</a></div>
 	</div>
 	
 	<hr/>
@@ -99,29 +100,19 @@
 			... OR ...<br/>
 			View samples:</p>
 		</div>
-    <div class="row-fluid">
-      <ul class="thumbnails examples">
-        <li class="span3">
-          <a class="thumbnail" href="#">
-            <img src="{{ ASSET_PATH }}/img/800x500.gif">
-          </a>
-        </li>
-        <li class="span3">
-          <a class="thumbnail" href="#">
-            <img src="{{ ASSET_PATH }}/img/800x500.gif">
-          </a>
-        </li>
-        <li class="span3">
-          <a class="thumbnail" href="#">
-            <img src="{{ ASSET_PATH }}/img/800x500.gif">
-          </a>
-        </li>
-        <li class="span3">
-          <a class="thumbnail" href="#">
-            <img src="{{ ASSET_PATH }}/img/800x500.gif">
-          </a>
-        </li>
-      </ul>
+    <div class="row">
+      <a href="#">
+        <img src="{{ ASSET_PATH }}/img/800x500.gif" class="img-thumbnail" />
+      </a>
+      <a href="#">
+        <img src="{{ ASSET_PATH }}/img/800x500.gif" class="img-thumbnail" />
+      </a>
+      <a href="#">
+        <img src="{{ ASSET_PATH }}/img/800x500.gif" class="img-thumbnail" />
+      </a>
+      <a href="#">
+        <img src="{{ ASSET_PATH }}/img/800x500.gif" class="img-thumbnail" />
+      </a>
      </div>
    </div>
 
