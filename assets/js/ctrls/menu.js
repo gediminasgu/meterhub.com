@@ -1,4 +1,4 @@
-angular.module('app').controller('MenuCtrl', ['$scope', '$location', 'authentication', function ($scope, $location, authentication) {
+angular.module('menu').controller('MenuCtrl', ['$scope', '$location', 'authentication', function($scope, $location, authentication) {
 	$scope.user = null;
 
 	$scope.init = function() {

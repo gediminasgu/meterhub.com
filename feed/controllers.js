@@ -8,7 +8,7 @@ angular.module('feedServices', ['ngResource']).
         });
     });
 
-angular.module('feeds', ['feedServices']).
+angular.module('feeds', ['feedServices', 'ngRoute']).
   config(['$routeProvider', function ($routeProvider) {
       $routeProvider.
           when('/', { templateUrl: 'feed-list.html', controller: FeedListCtrl }).
@@ -16,9 +16,19 @@ angular.module('feeds', ['feedServices']).
           otherwise({ redirectTo: '/' });
   }]);
 
-function FeedListCtrl($scope, Feed) {
-    $scope.feeds = Feed.query();
-}
+angular.module('feeds').controller('FeedListCtrl', ['$scope', '$http', function($scope, $http) {
+    $scope.feeds = null;
+
+    $scope.init = function() {
+        $http.get('/feed?q=%20')
+            .success(function(data, status, headers, config) {
+                $scope.feeds = data.feeds;
+            })
+            .error(function(data, status, headers, config) {
+                alert("Exception occured");
+            });
+    }
+}]);
 
 function FeedDetailCtrl($scope, $routeParams, $http, Feed) {
     $scope.feed = Feed.get({ feedId: $routeParams.feedId });

@@ -1,7 +1,9 @@
-<span>Total feeds: {{feeds.length}}</span>
-<div class="well" ng-repeat="feed in feeds">
-    <p>
-        <a href="#/{{feed.id}}">{{feed.title}}</a> ({{feed.location}}) by <a href="/user/{{feed.user}}">{{feed.user}}</a>
-    </p>
-    {{feed.desc}}
+<div ng-controller="FeedListCtrl" ng-init="init()">
+	<span>Total feeds: {{feeds.length}}</span>
+	<div class="well" ng-repeat="feed in feeds">
+	    <p>
+	        <a href="#/{{feed.id}}">{{feed.title}}</a> ({{feed.location}}) by <a href="/user/{{feed.user}}">{{feed.user}}</a>
+	    </p>
+	    {{feed.desc}}
+	</div>
 </div>

@@ -1,4 +1,4 @@
-angular.module("app", []).factory("authentication", ['$http', '$document', '$rootScope', function (http, doc, rootScope) {
+angular.module("app").factory("authentication", ['$http', '$document', '$rootScope', function (http, doc, rootScope) {
 	return {
 		/*
 		isAuthenticated: function () {
