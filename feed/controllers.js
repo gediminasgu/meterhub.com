@@ -6,7 +6,7 @@ angular.module('feedServices', ['ngResource']).
         });
     });
 
-angular.module('feeds', ['feedServices']).
+angular.module('feeds', ['feedServices', 'ngRoute']).
   config(['$routeProvider', function ($routeProvider) {
       $routeProvider.
           when('/', { templateUrl: 'feed-list.html', controller: FeedListCtrl }).

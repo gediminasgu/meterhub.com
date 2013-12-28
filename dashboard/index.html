@@ -5,8 +5,6 @@ scripts:
 - http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js
 - http://d3js.org/d3.v3.min.js
 - /assets/js/jQDateRangeSlider-min.js
-- https://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js
-- /assets/js/angular-resource.min.js
 - /assets/js/chart.js?d
 - controllers.js
 
@@ -14,7 +12,7 @@ scripts:
 {% include JB/setup %}
 <link rel="stylesheet" href="/assets/css/jqs/iThing.css" type="text/css" />
 
-<div ng-app="dashboards" ng-view>
+<div ng-view>
 </div>
 
 <style>
@@ -108,7 +106,7 @@ scripts:
                     // color, style
                 },
                 {
-                    title: 'Temperature (ºC)',
+                    title: 'Temperature (ÂºC)',
                     align: 'right',
                     min: 16,
                     max: 22,
@@ -247,7 +245,7 @@ scripts:
                     // format: 'f', // value formatting https://github.com/mbostock/d3/wiki/Formatting#wiki-d3_format
                 },
                 {
-                    title: 'Temperature (ºC)',
+                    title: 'Temperature (ÂºC)',
                     align: 'right',
                 }
             ],
@@ -281,7 +279,7 @@ scripts:
                     align: 'left',
                 },
                 {
-                    title: 'Temperature (ºC)',
+                    title: 'Temperature (ÂºC)',
                     align: 'right',
                 }
             ],

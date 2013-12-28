@@ -6,7 +6,7 @@ angular.module('dashboardServices', ['ngResource']).
         });
     });
 
-angular.module('dashboards', ['dashboardServices']).
+angular.module('dashboards', ['dashboardServices', 'ngRoute']).
   config(['$routeProvider', function ($routeProvider) {
       $routeProvider.
           when('/', { templateUrl: 'dashboard-list.html', controller: DashboardListCtrl }).

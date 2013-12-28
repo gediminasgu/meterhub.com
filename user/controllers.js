@@ -6,7 +6,7 @@ angular.module('userServices', ['ngResource']).
         });
     });
 
-angular.module('users', ['userServices']).
+angular.module('users', ['userServices', 'ngRoute']).
   config(['$routeProvider', function ($routeProvider) {
       $routeProvider.
           when('/', { templateUrl: 'user-list.html', controller: UserListCtrl }).
