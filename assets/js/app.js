@@ -1,4 +1,4 @@
-var app = angular.module('app', ['menu', 'feeds', 'dashboards', 'users']);
+var app = angular.module('app', ['ngRoute', 'menu', 'feeds', 'dashboards', 'users']);
 
 app.config(['$controllerProvider', '$interpolateProvider', function($controllerProvider, $interpolateProvider) {
 	app.controllerProvider = $controllerProvider;

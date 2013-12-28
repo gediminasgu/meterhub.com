@@ -1,4 +1,4 @@
-angular.module('menu').controller('MenuCtrl', ['$scope', '$location', 'authentication', function($scope, $location, authentication) {
+angular.module('menu').controller('MenuCtrl', ['$scope', '$rootScope', '$window', 'authentication', function($scope, $rootScope, $window, authentication) {
 	$scope.user = null;
 
 	$scope.init = function() {
@@ -11,5 +11,6 @@ angular.module('menu').controller('MenuCtrl', ['$scope', '$location', 'authentic
 
 	$scope.logout = function() {
 		authentication.logout();
+		$window.location.href = '/';
 	}
 }]);

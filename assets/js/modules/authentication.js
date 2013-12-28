@@ -58,6 +58,9 @@ angular.module("app").factory("authentication", ['$http', '$document', '$rootSco
 			doc[0].cookie = 'user=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 			this.ticket = null;
 			this.user = null;
-		}
+		},
+		isAuthenticated: function() {
+			return this.user != null;
+		},
 	};
 }]);

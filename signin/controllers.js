@@ -2,6 +2,12 @@ angular.module('app').controller('SignInCtrl', ['$scope', '$window', 'authentica
 	$scope.username = null;
 	$scope.password = null;
 	$scope.remember = false;
+	$scope.signedUp = false;
+
+	$scope.init = function() {
+		if ($window.location.search.indexOf('signedUp=true') > 0)
+			$scope.signedUp = true;
+	};
 
 	$scope.submit = function() {
 		authentication.signin($scope.username, $scope.password, $scope.remember, function() {

@@ -19,6 +19,9 @@ hr {
 
 iframe, object, embed{max-width: 100%;}
 
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
 
 /* Nav
 -------------------------------------------------- */
@@ -98,7 +101,7 @@ body > .navbar .navbar-brand:hover {
 /* Homepage Hero
 -------------------------------------------------- */
 .headingcta {
-  background: #369041 url(../img/blue-strips.png) repeat;
+  background: #369041;
 }
 
 .headingcta h1 {
@@ -751,4 +754,22 @@ table code {
 .home-thumbs .img-thumbnail {
   width: 260px; height: 162px; float:left;
   margin-left: 10px;
+}
+
+.home {
+  background-image: url(../img/chart_pic_transp2.png);
+  background-repeat: no-repeat;
+  background-position: right 20px;
+}
+
+.home .heading{
+  margin-bottom: 50px;
+}
+
+.signup {
+  margin-top: 70px;
+}
+
+.signup .has-error input[type=text], .signup .has-error input[type=password] {
+  background-color: #f2dede;
 }
