@@ -1,20 +1,22 @@
-<a href="/feed">Back to all users feeds list</a>
+<div ng-controller="UserDetailCtrl" ng-init="init()" >
+	<a href="/feed">Back to all users feeds list</a>
 
-<div class="well">
-    <p>
-        View user's <a href="/dashboard#/{{userId}}">dashboard</a>.
-    </p>
+	<div class="well">
+	    <p>
+	        View user's <a href="/dashboard#/{{userId}}">dashboard</a>.
+	    </p>
+	</div>
+
+	<h3>{{userId}} feeds</h3>
+	<span>Total feeds: {{feeds.length}}</span>
+	<ul class="unstyled">
+		<li ng-repeat="feed in feeds">
+	        <dl>
+	            <dt><a href="/feed/{{feed.fid}}">{{feed.title}}</a> ({{feed.location}})</dt>
+	            <dd>{{feed.desc}}</dd>
+	        </dl>
+		</li>
+	</ul>
+
+	<a href="/feed">Back to all users feeds list</a>
 </div>
-
-<h3>{{userId}} feeds</h3>
-<span>Total feeds: {{feeds.length}}</span>
-<ul class="unstyled">
-	<li ng-repeat="feed in feeds">
-        <dl>
-            <dt><a href="/feed/{{feed.fid}}">{{feed.title}}</a> ({{feed.location}})</dt>
-            <dd>{{feed.desc}}</dd>
-        </dl>
-	</li>
-</ul>
-
-<a href="/feed">Back to all users feeds list</a>

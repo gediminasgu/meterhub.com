@@ -6,11 +6,12 @@ angular.module('userServices', ['ngResource']).
         });
     });
 
-angular.module('users', ['userServices', 'ngRoute']).
-  config(['$routeProvider', function ($routeProvider) {
+var usersApp = angular.module('users', ['ngRoute', 'userServices']);
+
+usersApp.config(['$routeProvider', function ($routeProvider) {
       $routeProvider.
-          when('/', { templateUrl: 'user-list.html', controller: UserListCtrl }).
-          when('/:userId', { templateUrl: 'user-detail.html', controller: UserDetailCtrl }).
+          when('/', { templateUrl: 'user-list.html', controller: 'UserListCtrl' }).
+          when('/:userId', { templateUrl: 'user-detail.html', controller: 'UserDetailCtrl' }).
           otherwise({ redirectTo: '/' });
   }]);
 
@@ -19,14 +20,23 @@ function UserListCtrl($scope, Feed) {
     $scope.feeds = function () { document.location.href = '/feed'; };
 }
 
-function UserDetailCtrl($scope, $routeParams, $http) {
+angular.module('users').controller('UserDetailCtrl', ['$scope', '$routeParams', '$http', '$window', function($scope, $routeParams, $http, $window) {
     $scope.userId = $routeParams.userId;
     $scope.feeds = [];
+    $scope.isBusy = false;
 
-    $scope.loadFeeds = function () {
-        $http.jsonp(apiUrl + '/feed/user/' + $routeParams.userId + '?callback=JSON_CALLBACK')
-            .success(function (data) { $scope.feeds = data; });
+    $scope.init = function () {
+      $scope.isBusy = true;
+      $http.get(apiUrl + '/feed?user=' + $routeParams.userId)
+        .success(function(data, status, headers, config) {
+          $scope.feeds = data.feeds;
+        })
+        .error(function(data, status, headers, config) {
+          $scope.isBusy = false;
+          if (data && data.message)
+            $window.alert(data.message);
+          else
+            $window.alert('Feeds loading failed');
+        });
     };
-
-    $scope.loadFeeds();
-}
+}]);

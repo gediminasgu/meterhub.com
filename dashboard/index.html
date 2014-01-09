@@ -2,8 +2,8 @@
 layout: dashboard
 title : User dashboard
 scripts:
-- http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js
-- http://d3js.org/d3.v3.min.js
+- //ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js
+- /assets/js/d3.v3.min.js
 - /assets/js/jQDateRangeSlider-min.js
 - /assets/js/chart.js?d
 - controllers.js
@@ -99,17 +99,18 @@ scripts:
                 },
                 {
                     min: 0,
-                    max: 120,
+                    max: 1.20,
                     title: 'Gas',
                     align: 'left',
-                    // format: 'f', // value formatting https://github.com/mbostock/d3/wiki/Formatting#wiki-d3_format
+                    format: 'g', // value formatting https://github.com/mbostock/d3/wiki/Formatting#wiki-d3_format
                     // color, style
                 },
                 {
-                    title: 'Temperature (ºC)',
+                    title: 'Temperature (' + String.fromCharCode(176) + 'C)',
                     align: 'right',
                     min: 16,
                     max: 22,
+                    format: 'g',
                 }
             ],
             series: [
@@ -239,14 +240,15 @@ scripts:
             yaxis: [
                 {
                     min: 0,
-                    max: 120,
+                    max: 1.20,
                     title: 'Gas',
                     align: 'left',
-                    // format: 'f', // value formatting https://github.com/mbostock/d3/wiki/Formatting#wiki-d3_format
+                    format: 'g', // value formatting https://github.com/mbostock/d3/wiki/Formatting#wiki-d3_format
                 },
                 {
-                    title: 'Temperature (ºC)',
+                    title: 'Temperature (' + String.fromCharCode(176) + 'C)',
                     align: 'right',
+                    format: 'g',
                 }
             ],
             series: [
@@ -277,10 +279,12 @@ scripts:
                     min: 0,
                     title: 'Gas',
                     align: 'left',
+                    format: 'g',
                 },
                 {
-                    title: 'Temperature (ºC)',
+                    title: 'Temperature (' + String.fromCharCode(176) + 'C)',
                     align: 'right',
+                    format: 'g',
                 }
             ],
             series: [
@@ -295,13 +299,77 @@ scripts:
                     yaxis: 1
                 }
             ]
-        }
+        },
+        '18': {
+            container: 'charts',
+            title: 'Mains electricity usage (hourly)',
+            managementApiUrl: apiUrl,
+            dataWarehouseApiUrl: dwUrl,
+            query: {
+                fid: 1,
+                dimension: 'hour',
+                duration: '48hours',
+            },
+            yaxis: [
+                {
+                    title: 'kWh',
+                    align: 'left',
+                    format: 'g', // value formatting https://github.com/mbostock/d3/wiki/Formatting#wiki-d3_format
+                }
+            ],
+            series: [
+                {
+                    code: 'CT_KWH_04',
+                    type: 'line'
+                },
+                {
+                    code: 'CT_KWH_02',
+                    type: 'line'
+                },
+                {
+                    code: 'CT_KWH_03',
+                    type: 'line'
+                },
+            ]
+        },
+        '19': {
+            container: 'charts',
+            title: 'Mains electricity usage (daily)',
+            managementApiUrl: apiUrl,
+            dataWarehouseApiUrl: dwUrl,
+            query: {
+                fid: 1,
+                dimension: 'day',
+                duration: '30days',
+            },
+            yaxis: [
+                {
+                    title: 'kWh',
+                    align: 'left',
+                    format: 'g', // value formatting https://github.com/mbostock/d3/wiki/Formatting#wiki-d3_format
+                }
+            ],
+            series: [
+                {
+                    code: 'CT_KWH_04',
+                    type: 'line'
+                },
+                {
+                    code: 'CT_KWH_02',
+                    type: 'line'
+                },
+                {
+                    code: 'CT_KWH_03',
+                    type: 'line'
+                },
+            ]
+        },
     };
         /*chart.remoteInit(
-	    {
-	        container: 'chart',
-	        managementApiUrl: apiUrl,
-	        dataWarehouseApiUrl: dwUrl,
-	        chartId: 17
-	    });*/
+        {
+            container: 'chart',
+            managementApiUrl: apiUrl,
+            dataWarehouseApiUrl: dwUrl,
+            chartId: 17
+        });*/
 </script>

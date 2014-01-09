@@ -77,8 +77,10 @@ JB :
   atom_path : /atom.xml
   rss_path : /rss.xml
   
-  MH_API_URL: http://api.meterhub.com/managementapi
-  MH_DW_URL: http://dw.meterhub.com
+  MH_API_URL: //api.meterhub.com
+  #MH_API_URL: http://localhost:8069
+  MH_DW_URL: //api.meterhub.com/data
+  #MH_DW_URL: http://localhost:8080/datawarehouse-api
 
   navigation:
   - text: Home

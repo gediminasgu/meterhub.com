@@ -8,11 +8,12 @@ angular.module('feedServices', ['ngResource']).
         });
     });
 
-angular.module('feeds', ['feedServices', 'ngRoute']).
-  config(['$routeProvider', function ($routeProvider) {
+var feedsApp = angular.module('feeds', ['ngRoute', 'feedServices']);
+
+feedsApp.config(['$routeProvider', function ($routeProvider) {
       $routeProvider.
-          when('/', { templateUrl: 'feed-list.html', controller: FeedListCtrl }).
-          when('/:feedId', { templateUrl: 'feed-detail.html', controller: FeedDetailCtrl }).
+          when('/', { templateUrl: 'feed-list.html', controller: 'FeedListCtrl' }).
+          when('/:feedId', { templateUrl: 'feed-detail.html', controller: 'FeedDetailCtrl' }).
           otherwise({ redirectTo: '/' });
   }]);
 
@@ -20,7 +21,7 @@ angular.module('feeds').controller('FeedListCtrl', ['$scope', '$http', function(
     $scope.feeds = null;
 
     $scope.init = function() {
-        $http.get('/feed?q=%20')
+        $http.get(apiUrl + '/feed?q=%20')
             .success(function(data, status, headers, config) {
                 $scope.feeds = data.feeds;
             })
@@ -30,27 +31,22 @@ angular.module('feeds').controller('FeedListCtrl', ['$scope', '$http', function(
     }
 }]);
 
-function FeedDetailCtrl($scope, $routeParams, $http, Feed) {
-    $scope.feed = Feed.get({ feedId: $routeParams.feedId });
-    $scope.valuesLoading = false;
+angular.module('feeds').controller('FeedDetailCtrl', ['$scope', '$routeParams', '$http', function($scope, $routeParams, $http) {
+    $scope.feed = null;
     $scope.values = {};
 
-    //$scope.setImage = function (imageUrl) {
-    //    $scope.mainImageUrl = imageUrl;
-    //}
+    $scope.init = function() {
+        $http.get(apiUrl + '/feed/' + $routeParams.feedId)
+            .success(function(data, status, headers, config) {
+                $scope.feed = data;
+                $scope.loadLastValues();
+            })
+            .error(function(data, status, headers, config) {
+                alert("Exception occured");
+            });
+    };
 
     $scope.loadLastValues = function () {
-
-        console.log('called');
-        if ($scope.valuesLoading)
-            return;
-
-        if ($scope.feed == null || $scope.feed.streams == undefined)
-            return;
-
-        $scope.valuesLoading = true;
-        console.log('rendering');
-
         var self = $scope;
         $http.jsonp(dwUrl + '/feed/' + $routeParams.feedId + '?limit=1&callback=JSON_CALLBACK')
             .success(function (data, status, headers, config) {
@@ -90,6 +86,6 @@ function FeedDetailCtrl($scope, $routeParams, $http, Feed) {
     }
 
     $scope.isDescSet = function () {
-        return $scope.feed.desc != undefined && $scope.feed.desc != null && $scope.feed.desc.length > 0;
+        return $scope.feed && $scope.feed.description && $scope.feed.description.length > 0;
     }
-}
+}]);

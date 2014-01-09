@@ -8,6 +8,10 @@ scripts:
 ---
 {% include JB/setup %}
 <link href="style.css" rel="stylesheet">
+<script type="text/javascript">
+    if (location.protocol == 'http:' && location.host != 'localhost' )
+        location.href = location.href.replace('http:', 'https:');
+</script>
 
 <div class="container">
 	<div ng-controller="SignInCtrl" ng-init="init()">

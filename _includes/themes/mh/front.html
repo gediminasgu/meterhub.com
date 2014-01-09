@@ -11,11 +11,11 @@
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
     <!-- Le styles -->
-    <link href="{{ ASSET_PATH }}/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ ASSET_PATH }}/css/bootstrap.css" rel="stylesheet">
     <link href="{{ ASSET_PATH }}/css/bootstrap-theme.css" rel="stylesheet">
     <link href="{{ ASSET_PATH }}/css/colorbox.css" rel="stylesheet">
     <link href="{{ ASSET_PATH }}/css/style.css" rel="stylesheet">
@@ -32,9 +32,9 @@
 	{% include themes/mh/menu.html %}
 
 <div class="headingcta home">
-  <div class="container">
+  <div class="container graph">
     <div class="row">
-      <div class="col-xs-6 col-sm-6 col-md-6 heading">
+      <div class="col-xs-12 col-sm-6 col-md-6 heading">
     <h1>Free &amp; Open!</h1>
         <p class="cta-text">Simple service for your meter data storage, aggregation and visualization.</p>
         <p>
@@ -42,9 +42,9 @@
 		<a href="http://wiki.meterhub.com/doku.php/wiki:getting_started" class="btn btn-default btn-inverse btn-lg">Get started</a>
       	</p>
       </div>
-      <div class="col-xs-10 col-sm-6 col-md-6">
+      <div class="col-xs-12 col-sm-6 col-md-6 hidden-xs">
         <div class="row">
-          <div class="col-xs-10 col-sm-8 col-md-8 col-md-offset-2">
+          <div class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2">
             {% include themes/mh/signup.html %}
           </div>
         </div>
@@ -70,53 +70,57 @@
 
   <div class="homepage-content">
 
-    <div class="row-fluid" style="text-align: center">
-      <div class="col-xs-4 col-sm-4 col-md-4">
+    <div class="row" style="text-align: center">
+      <div class="col-xs-10 col-sm-4 col-md-4 col-xs-offset-1 col-sm-offset-0 col-md-offset-0 col-lg-offset-0">
         <h2>One place for all your<br/> meter data</h2>
-		<p>
-			You can use meterHUB for all your metering projects like energy monitoring, server/application monitoring, environment monitoring and many more.
-		</p>
-		<div class="center"><a href="#" class="btn btn-small">Learn more</a></div>
+    		<p>
+    			You can use meterHUB for all your metering projects like energy monitoring, server/application monitoring, environment monitoring and many more.
+    		</p>
+  		  <div class="center"><a href="#" class="btn btn-small">Learn more</a></div>
       </div>
-      <div class="col-xs-4 col-sm-4 col-md-4">
+      <div class="col-xs-10 col-sm-4 col-md-4 col-xs-offset-1 col-sm-offset-0 col-md-offset-0 col-lg-offset-0">
         <h2>RAW data<br/> or aggregated?</h2>
         <p>
-			With meterHUB you can choose what data you want. Raw or aggregated. Aggregated by hour or by day. Or maybe by week? Or...?
-		</p>
-		<div class="center"><a href="#" class="btn btn-small">Learn more</a></div>
+			   With meterHUB you can choose what data you want. Raw or aggregated. Aggregated by hour or by day. Or maybe by week? Or...?
+		    </p>
+		    <div class="center"><a href="#" class="btn btn-small">Learn more</a></div>
       </div>
-        <div class="col-xs-4 col-sm-4 col-md-4">
+      <div class="col-xs-10 col-sm-4 col-md-4 col-xs-offset-1 col-sm-offset-0 col-md-offset-0 col-lg-offset-0">
         <h2>Analyse<br/>and share</h2>
-        <p>Using our API, you can query your data, visualize, analyse! Share your charts or data with your friends. Build your own applications on top of meterHUB API!</p>
-		<div class="center"><a href="#" class="btn btn-small">Learn more</a></div>
+        <p>Using our API, you can query your data, visualize and analyse. Share your charts or data with your friends. Build your own applications on top of meterHUB API!</p>
+		    <div class="center"><a href="#" class="btn btn-small">Learn more</a></div>
       </div>
-     
-		<div class="col-xs-4 col-sm-4 col-md-4 center"><a href="#" class="btn btn-default btn-small">Learn more</a></div>
-		<div class="col-xs-4 col-sm-4 col-md-4 center"><a href="#" class="btn btn-default btn-small">Learn more</a></div>
-		<div class="col-xs-4 col-sm-4 col-md-4 center"><a href="#" class="btn btn-default btn-small">Learn more</a></div>
     </div>
 	
 	<hr/>
-	
-     <div class="home-thumbs">
-		<div class="row">
-			<p class="byline">Start right now following this short <a href="http://wiki.meterhub.com/doku.php/wiki:getting_started">Getting started</a> tutorial!<br/>
-			... OR ...<br/>
-			View samples:</p>
-		</div>
+    <div class="row home-thumbs">
+      <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-md-10">
+        <p class="byline">Start right now following this short <a href="http://wiki.meterhub.com/doku.php/wiki:getting_started">Getting started</a> tutorial!<br/>
+        ... OR ...<br/>
+        View samples:</p>
+      </div>
+    </div>
     <div class="row">
-      <a href="#">
-        <img src="{{ ASSET_PATH }}/img/800x500.gif" class="img-thumbnail" />
-      </a>
-      <a href="#">
-        <img src="{{ ASSET_PATH }}/img/800x500.gif" class="img-thumbnail" />
-      </a>
-      <a href="#">
-        <img src="{{ ASSET_PATH }}/img/800x500.gif" class="img-thumbnail" />
-      </a>
-      <a href="#">
-        <img src="{{ ASSET_PATH }}/img/800x500.gif" class="img-thumbnail" />
-      </a>
+      <div class="col-xs-10 col-xs-offset-1 col-sm-5 col-md-3 col-md-offset-0 col-lg-offset-0">
+        <a href="#">
+          <img src="{{ ASSET_PATH }}/img/800x500.gif" class="img-thumbnail" />
+        </a>
+      </div>
+      <div class="col-xs-10 col-xs-offset-1 col-sm-5 col-md-3 col-md-offset-0 col-lg-offset-0">
+        <a href="#">
+          <img src="{{ ASSET_PATH }}/img/800x500.gif" class="img-thumbnail" />
+        </a>
+      </div>
+      <div class="col-xs-10 col-xs-offset-1 col-sm-5 col-md-3 col-md-offset-0 col-lg-offset-0">
+        <a href="#">
+          <img src="{{ ASSET_PATH }}/img/800x500.gif" class="img-thumbnail" />
+        </a>
+      </div>
+      <div class="col-xs-10 col-xs-offset-1 col-sm-5 col-md-3 col-md-offset-0 col-lg-offset-0">
+        <a href="#">
+          <img src="{{ ASSET_PATH }}/img/800x500.gif" class="img-thumbnail" />
+        </a>
+      </div>
      </div>
    </div>
 

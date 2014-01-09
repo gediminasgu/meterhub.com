@@ -1,7 +1,6 @@
 body {
 	position: relative;
-  background: url(../img/grey-bg.png) repeat;
-  padding-top: 70px;
+  padding-top: 50px;
   padding-bottom: 40px;
   background-color: #eee;
 }
@@ -28,7 +27,7 @@ iframe, object, embed{max-width: 100%;}
 .navbar {
   background: #333;
   border-bottom: 1px solid #111;
-  padding: 20px 0;
+  /*padding: 20px 0;*/
 }
 
 .navbar-header {
@@ -81,11 +80,8 @@ iframe, object, embed{max-width: 100%;}
 body > .navbar .navbar-brand {
     /*font-family: 'Pacifico', cursive;*/
     font-family: 'Open Sans', sans-serif;
-  	padding-right: 0;
-  	padding-left: 0;
-  	font-size: 40px;
+  	font-size: 25px;
   	font-weight: bold;
-    margin-left: 0;
   	color: #FFFFFF;
   	text-shadow: 0 1px 0 rgba(255,255,255,.1), 0 0 30px rgba(255,255,255,.125);
   -webkit-transition: all .2s linear;
@@ -247,8 +243,8 @@ hr.soften {
 
 .inner-header {
   margin-bottom: 20px;
-  padding: 20px 0 20px;
-  background: #369041 url(../img/blue-strips.png) repeat; 
+  padding: 5px 0 5px;
+  background-color: #369041; 
   border-bottom: 1px solid #555555; 
 }
 
@@ -603,20 +599,20 @@ blockquote {
 ------------------------- */
 @media (min-width: 768px) and (max-width: 980px) {
   /* Remove any padding from the body */
-  body {
+  /*body {
     padding-top: 0;
-  }
+  }*/
 
-  .home {
+  /*.home {
     padding: 20px 0 0 0;
   }
   
   .headingcta {
     margin-top: -20px; /* Offset bottom margin on .navbar */
-  }
+  }*/
 
   .headingcta h1 {
-    font-size: 60px;
+    font-size: 40px;
   }
 
   p.cta-text {
@@ -756,10 +752,11 @@ table code {
   margin-left: 10px;
 }
 
-.home {
-  background-image: url(../img/chart_pic_transp2.png);
+.graph {
+  background-image: url(../img/chart_pic_transp.png);
   background-repeat: no-repeat;
-  background-position: right 20px;
+  background-size: cover;
+  /*height: 450px;*/
 }
 
 .home .heading{
@@ -767,9 +764,13 @@ table code {
 }
 
 .signup {
-  margin-top: 70px;
+  margin-top: 50px;
 }
 
 .signup .has-error input[type=text], .signup .has-error input[type=password] {
   background-color: #f2dede;
+}
+
+navbar-brand {
+  margin-right: 20px;
 }

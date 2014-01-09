@@ -1,20 +1,12 @@
-angular.module('dashboardServices', ['ngResource']).
-    factory('Dashboard', function ($resource) {
-        return $resource( apiUrl + '/feed/user/:userId', {}, {
-            query: { method: 'JSONP', params: { userId: '', callback: 'JSON_CALLBACK' }, isArray: true },
-            get: { method: 'JSONP', params: { userId: '', callback: 'JSON_CALLBACK' } }
-        });
-    });
-
-angular.module('dashboards', ['dashboardServices', 'ngRoute']).
+angular.module('dashboards', ['ngRoute']).
   config(['$routeProvider', function ($routeProvider) {
-      $routeProvider.
+    $routeProvider.
           when('/', { templateUrl: 'dashboard-list.html', controller: DashboardListCtrl }).
           when('/:userId', { templateUrl: 'dashboard-detail.html', controller: DashboardDetailCtrl }).
           otherwise({ redirectTo: '/' });
   }]);
 
-function DashboardListCtrl($scope, $routeParams, $http) {
+function DashboardListCtrl($scope, $routeParams, $http, $location) {
     $scope.userId = $routeParams.userId;
     $scope.charts = [];
 
@@ -26,9 +18,17 @@ function DashboardListCtrl($scope, $routeParams, $http) {
     $scope.loadCharts();
 }
 
-function DashboardDetailCtrl($scope, $routeParams, $http) {
+function DashboardDetailCtrl($scope, $routeParams, $http, $window) {
     $scope.userId = $routeParams.userId;
     $scope.charts = [];
+
+    $scope.init = function() {
+
+        if ($window.location.protocol == 'https:')
+            $window.location.href = $window.location.href.replace('https:', 'http:');
+
+        $scope.loadFeeds();
+    };
 
     $scope.initChart = function (chartId) {
         var c = charts[chartId];
@@ -69,9 +69,14 @@ function DashboardDetailCtrl($scope, $routeParams, $http) {
         "title": "Temperatures",
         "height": 400,
         "dimension": "hour"
+    },
+    {
+        "fid": 1,
+        "cid": 19,
+        "title": "Temperatures",
+        "height": 400,
+        "dimension": "day"
     }
         ];
     };
-
-    $scope.loadFeeds();
 }
