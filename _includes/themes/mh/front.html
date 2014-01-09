@@ -29,6 +29,11 @@
   </head>
 
   <body data-spy="scroll" data-target="inner-sidebar" data-twttr-rendered="true">
+<script type="text/javascript">
+    if (location.protocol == 'http:' && location.host != 'localhost' )
+        location.href = location.href.replace('http:', 'https:');
+</script>
+
 	{% include themes/mh/menu.html %}
 
 <div class="headingcta home">
