@@ -2,7 +2,7 @@ var app = angular.module('app', ['ngRoute', 'menu', 'feeds', 'dashboards', 'user
 
 app.config(['$controllerProvider', '$interpolateProvider', function($controllerProvider, $interpolateProvider) {
 	app.controllerProvider = $controllerProvider;
-    //$interpolateProvider.startSymbol('{[{').endSymbol('}]}');
+    $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
 }]);
 
 

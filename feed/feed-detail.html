@@ -1,21 +1,21 @@
 <div ng-controller="FeedDetailCtrl" ng-init="init()">
   <a href="#/">Back to list</a>
-  <h3>{{feed.title}}</h3>
+  <h3>{[{feed.title}]}</h3>
   <div class="well">
     <div class="row">
       <div class="col-xs-2 col-sm-2 col-md-2">Feed ID</div>
-      <div class="col-xs-5 col-sm-5 col-md-5">{{feed.id}}</div>
+      <div class="col-xs-5 col-sm-5 col-md-5" ng-bind="feed.id"></div>
     </div>
     <div class="row">
       <div class="col-xs-2 col-sm-2 col-md-2">Owner</div>
-      <div class="col-xs-5 col-sm-5 col-md-5">{{feed.user}}</div>
+      <div class="col-xs-5 col-sm-5 col-md-5" ng-bind="feed.user"></div>
     </div>
     <div class="row">
       <div class="col-xs-2 col-sm-2 col-md-2">Location</div>
-      <div class="col-xs-5 col-sm-5 col-md-5">{{feed.location}}</div>
+      <div class="col-xs-5 col-sm-5 col-md-5" ng-bind="feed.location"></div>
     </div>
     <div class="row" ng-show="isDescSet()">
-        <p class="muted">{{feed.description}}</p>
+        <p class="muted" ng-bind="feed.description"></p>
     </div>
   </div>
 
@@ -26,9 +26,9 @@
               <th>Currently</th>
           </tr>
           <tr ng-repeat="stream in feed.streams">
-              <td>{{stream.code}}</td>
-              <td>{{stream.title}}</td>
-              <td>{{stream.value}}</td>
+              <td ng-bind="stream.code"></td>
+              <td ng-bind="stream.title"></td>
+              <td ng-bind="stream.value"></td>
           </tr>
       </table>
   <a href="#/">Back to list</a>

@@ -3,17 +3,17 @@
 
 	<div class="well">
 	    <p>
-	        View user's <a href="/dashboard#/{{userId}}">dashboard</a>.
+	        View user's <a href="/dashboard#/{[{userId}]}">dashboard</a>.
 	    </p>
 	</div>
 
-	<h3>{{userId}} feeds</h3>
-	<span>Total feeds: {{feeds.length}}</span>
+	<h3>{[{userId}]} feeds</h3>
+	<span>Total feeds: {[{feeds.length}]}</span>
 	<ul class="unstyled">
 		<li ng-repeat="feed in feeds">
 	        <dl>
-	            <dt><a href="/feed/{{feed.fid}}">{{feed.title}}</a> ({{feed.location}})</dt>
-	            <dd>{{feed.desc}}</dd>
+	            <dt><a href="/feed/{[{feed.id}]}" ng-bind="feed.title"></a> ({[{feed.location}]})</dt>
+	            <dd ng-bind="feed.description"></dd>
 	        </dl>
 		</li>
 	</ul>

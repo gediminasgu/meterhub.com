@@ -1,9 +1,9 @@
 <div ng-controller="FeedListCtrl" ng-init="init()">
-	<span>Total feeds: {{feeds.length}}</span>
+	<span>Total feeds: {[{feeds.length}]}</span>
 	<div class="well" ng-repeat="feed in feeds">
 	    <p>
-	        <a href="#/{{feed.id}}">{{feed.title}}</a> ({{feed.location}}) by <a href="/user/{{feed.user}}">{{feed.user}}</a>
+	        <a href="#/{[{feed.id}]}" ng-bind="feed.title"></a> ({[{feed.location}]}) by <a href="/user/{[{feed.user}]}" ng-bind="feed.user"></a>
 	    </p>
-	    {{feed.desc}}
+	    <span ng-bind="feed.description"></span>
 	</div>
 </div>
