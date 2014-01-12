@@ -14,6 +14,7 @@ feedsApp.config(['$routeProvider', function ($routeProvider) {
       $routeProvider.
           when('/', { templateUrl: 'feed-list.html', controller: 'FeedListCtrl' }).
           when('/:feedId', { templateUrl: 'feed-detail.html', controller: 'FeedDetailCtrl' }).
+          when('/:feedId/edit', { templateUrl: 'feed-edit.html', controller: 'FeedEditCtrl' }).
           otherwise({ redirectTo: '/' });
   }]);
 
@@ -88,4 +89,41 @@ angular.module('feeds').controller('FeedDetailCtrl', ['$scope', '$routeParams', 
     $scope.isDescSet = function () {
         return $scope.feed && $scope.feed.description && $scope.feed.description.length > 0;
     }
+}]);
+
+angular.module('feeds').controller('FeedEditCtrl', ['$scope', '$routeParams', '$http', function($scope, $routeParams, $http) {
+    $scope.feed = null;
+    $scope.values = {};
+    $scope.aggregations = [
+        { title: "None", value: null },
+        { title: "Average", value: "AVG" },
+        { title: "Sum", value: "SUM" },
+        { title: "Sum differences", value: "SUM_DIFF" },
+    ];
+
+    $scope.init = function() {
+        $scope.feed = {
+            title: "Padvares g.",
+            description: "Something meaningful",
+            location: "Padvares g. 65, Vilnius, Lithuania",
+            longitude: null,
+            latitude: null,
+            elev: 0,
+            timezone: 0,
+            streams: [
+              {code: "123", title: "Temperatura", aggregation: "AVG", units: "C", tags: []},
+              {code: "GAS", title: "Dujos", aggregation: "SUM", units: "m3", tags: []},
+              {code: "ELEC", title: "Elektra 1", aggregation: "SUM", units: "kWh", tags: []},
+              {code: "ELEC2", title: "Elektra 2", aggregation: "SUM", units: "kWh", tags: []},
+            ]
+        };
+    };
+
+    $scope.addNewStream = function() {
+        $scope.feed.streams.push({});
+    };
+
+    $scope.removeStream = function(stream) {
+        $scope.feed.streams.splice($scope.feed.streams.indexOf(stream), 1);
+    };
 }]);

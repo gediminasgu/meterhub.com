@@ -1,0 +1,67 @@
+<div ng-controller="FeedEditCtrl" ng-init="init()">
+  <form role="form" class="form-horizontal">
+    <div class="form-group">
+      <label class="control-label col-md-2" for="title">Title</label>
+      <div class="col-md-6">
+        <input type="text" class="form-control" id="title" ng-model="feed.title" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-md-2" for="location">Location</label>
+      <div class="col-md-6">
+        <input type="text" class="form-control" id="location" ng-model="feed.location" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-md-2" for="description">Desription</label>
+      <div class="col-md-6">
+       <input type="text" class="form-control" id="description" ng-model="feed.description" />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-2 text-center">
+        Code
+      </div>
+      <div class="col-md-3 text-center">
+        Title
+      </div>
+      <div class="col-md-2 text-center">
+        Units
+      </div>
+      <div class="col-md-2 text-center">
+        Aggregation
+      </div>
+    </div>
+    <div class="row" ng-repeat="stream in feed.streams" style="margin-bottom: 5px;">
+      <div class="col-md-2">
+        <input type="text" class="form-control" id="stream.code" ng-model="stream.code" placeholder="Code" />
+      </div>
+      <div class="col-md-3">
+        <input type="text" class="form-control" id="stream.title" ng-model="stream.title" placeholder="Title" />
+      </div>
+      <div class="col-md-2">
+        <input type="text" class="form-control" id="stream.units" ng-model="stream.units" placeholder="Units" />
+      </div>
+      <div class="col-md-2">
+        <select class="form-control" id="stream.aggregation" ng-model="stream.aggregation">
+          <option ng-repeat="agg in aggregations" value="agg.value" ng-bind="agg.title"></option>
+        </select>
+      </div>
+      <div class="col-md-1">
+        <button class="btn" ng-click="removeStream(stream)"><span class="glyphicon glyphicon-remove"></span></button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+        <button class="btn btn-default btn-sm" ng-click="addNewStream()">Add stream</button>
+      </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-primary">Save</button>
+          <button class="btn btn-default">Cancel</button>
+        </div>
+      </div>
+    </form>
+</div>
